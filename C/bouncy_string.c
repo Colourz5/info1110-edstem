@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     printf("Invalid arguments length");
     return 0;
   }
-  char* word = argv[1];
+  char *word[] = argv[1];
   int start_position = atoi(argv[2]);
   if (start_position < 0) {
     printf("Invalid start position");
@@ -26,9 +26,9 @@ int main(int argc, char* argv[])
   int cursor = start_position;
   reverse = cursor == sizeof(word) - 3;
   while (length < iteration_count) {
-    printf("word[cursor] --> %s\n", word);
-    printf("sizeof %ld\n", sizeof(word));
-    output[index] = word[cursor];
+    printf("word[cursor] --> %c\n", word[cursor]);
+    char ch = word[cursor];
+    output[index] = ch;
     if (!(reverse)) {
       cursor++;
       reverse = cursor == sizeof(word) - 1;
