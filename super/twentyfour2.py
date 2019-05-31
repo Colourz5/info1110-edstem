@@ -1,22 +1,28 @@
 import sys
 from itertools import permutations
 from itertools import product
-# YOU HAVE TO USE BRACKETS ARGGHHH
+import numpy as np
+# Reducing 24 to one of the numbers
+# Still requires brackets to work
 
 
 def check(num_perms, op_perms, TARGET):
-    for numbers in num_perms:
-        for operators in op_perms:
-            expression = "{} {} {} {} {} {} {}".format(numbers[0],
-                                                       operators[0],
-                                                       numbers[1],
-                                                       operators[1],
-                                                       numbers[2],
-                                                       operators[2],
-                                                       numbers[3])
-            result = eval(expression)
-            if result == TARGET:
+    promising = []
+    for operators in op_perms:
+        for numbers in num_perms:
+            result = TARGET
+            promise = []
+            for index in range(len(operators)):
+                expression = "{} {} {}".format(result, operators[index],
+                                               numbers[index])
+                result = eval(expression)
+                promise.append(expression)
+            if abs(result - float(numbers[-1])) < pow(10, -14):
+                print(str(promising))
                 return True
+            elif abs(result - float(numbers[-1])) < 0.13:
+                promising.append(promise)
+    print(str(promising))
     return False
 
 
