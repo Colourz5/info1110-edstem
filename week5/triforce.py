@@ -2,6 +2,7 @@ import sys
 
 
 def draw_Triangle(height):
+    # LOL what is this
     for i in range(height):
         if ((i + 1) % height) != 0:
             print((2*height - 1 - i)*" " + "/" + 2*i*" " + "\\")
